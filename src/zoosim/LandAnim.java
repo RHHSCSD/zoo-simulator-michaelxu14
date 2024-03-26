@@ -8,20 +8,10 @@ package zoosim;
  *
  * @author Xu Last Name
  */
-public class Image {
-    public int width;
-    public int height;
-    
-    public Image (int w, int h){
-        width = w;
-        height = h;
+public class LandAnim extends Animal{
+    public LandAnim(String name, String species, char sex, int age,
+            String speed, Image image, String sound){
+        super(name, species, sex, speed, age, positionX, positionY, image, sound);
     }
     
-    public int getWidth(){
-        return width;
-    }
-    
-    public int getHeight(){
-        return height;
-    }
 }
