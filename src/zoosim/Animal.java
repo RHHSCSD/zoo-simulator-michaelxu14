@@ -5,73 +5,116 @@
 package zoosim;
 
 /**
- *
+ * Represents an animal in the zoo simulation.
+ * Implements IEntity interface.
+ * 
  * @author Xu Last Name
  */
-public class Animal implements IEntity{
+public class Animal implements IEntity {
     // Variables
     private static int idSaved = 0; 
     private int id;    // Unique identifier for each animal
 
     /**
-     *
+     * Name of the animal
      */
-    public String name;        // Name of the animal
-    private String species;     // Species of the animal
-    private char sex;           // Sex of the animal (M/F)
-    private int age;            // Age of the animal
-
+    public String name;
+    
     /**
-     *
+     * Species of the animal
      */
-    public int positionX = 0;      // X-coordinate of the animal's position
-
+    private String species;
+    
     /**
-     *
+     * Sex of the animal (M/F)
      */
-    public int positionY = 0;      // Y-coordinate of the animal's position
+    private char sex;
+    
+    /**
+     * Age of the animal
+     */
+    private int age;
+    
+    /**
+     * X-coordinate of the animal's position
+     */
+    public int positionX = 0;
+    
+    /**
+     * Y-coordinate of the animal's position
+     */
+    public int positionY = 0;
+    
+    /**
+     * Width of the image representing the animal
+     */
     private int xWidth;
-    private int yWidth;
-    private String size;  
-
+    
     /**
-     *
+     * Height of the image representing the animal
+     */
+    private int yWidth;
+    
+    /**
+     * Size of the animal
+     */
+    private String size;
+    
+    /**
+     * Degree of the animal
      */
     public int degree;
     
+    /**
+     * Speed of the animal
+     */
+    private int speed;
     
-    //Will be randomly chosen
-    private int speed; 
+    /**
+     * Maximum speed of the animal
+     */
     private int maxSpeed = 40;
+    
+    /**
+     * Minimum speed of the animal
+     */
     private int minSpeed = 0;
     
     /**
-     *
+     * Height of the animal
      */
     protected int height = 0;
-    // Slow, fast, medium 
-    private int hunger = 0;         // Hunger level of the animal
-    private int fatigue = 0;        // Fatigue level of the animal
-
+    
     /**
-     *
+     * Hunger level of the animal
      */
-    public Image image;        // Image representing the animal
-    private String sound;       // Sound produced by the animal
+    private int hunger = 0;
     
-    
-    
-    //Constructor
-
     /**
-     *
-     * @param name
-     * @param species
-     * @param sex
-     * @param speed
-     * @param age
-     * @param image
-     * @param sound
+     * Fatigue level of the animal
+     */
+    private int fatigue = 0;
+    
+    /**
+     * Image representing the animal
+     */
+    public Image image;
+    
+    /**
+     * Sound produced by the animal
+     */
+    private String sound;
+    
+    /**
+     * Constructs an Animal object with specified parameters.
+     * 
+     * @param name Name of the animal
+     * @param species Species of the animal
+     * @param sex Sex of the animal
+     * @param speed Speed of the animal
+     * @param age Age of the animal
+     * @param image Image representing the animal
+     * @param sound Sound produced by the animal
      */
     public Animal(String name, String species, char sex, int speed, int age, Image image, String sound){
         animSetter(name, species, sex, image, sound);
@@ -83,14 +126,15 @@ public class Animal implements IEntity{
     }
     
     /**
-     *
-     * @param name
-     * @param species
-     * @param sex
-     * @param image
-     * @param sound
-     * @param positionX
-     * @param positionY
+     * Constructs an Animal object with specified parameters.
+     * 
+     * @param name Name of the animal
+     * @param species Species of the animal
+     * @param sex Sex of the animal
+     * @param image Image representing the animal
+     * @param sound Sound produced by the animal
+     * @param positionX X-coordinate of the animal's position
+     * @param positionY Y-coordinate of the animal's position
      */
     public Animal(String name, String species, char sex, Image image, String sound, int positionX, int positionY){
         animSetter(name, species, sex, image, sound);
@@ -98,17 +142,17 @@ public class Animal implements IEntity{
         this.speed = 0;
         this.positionX = positionX;
         this.positionY = positionY;
-        
                 
     }
     
     /**
-     *
-     * @param name
-     * @param species
-     * @param sex
-     * @param image
-     * @param sound
+     * Initializes the animal with specified parameters.
+     * 
+     * @param name Name of the animal
+     * @param species Species of the animal
+     * @param sex Sex of the animal
+     * @param image Image representing the animal
+     * @param sound Sound produced by the animal
      */
     public void animSetter(String name, String species, char sex, Image image, String sound){
         idSaved ++;
@@ -124,7 +168,7 @@ public class Animal implements IEntity{
     }
     
     /**
-     *
+     * Makes the animal produce its characteristic sound.
      */
     @Override
     public void makeSound() {
@@ -141,17 +185,19 @@ public class Animal implements IEntity{
     }
     
     /**
-     *
-     * @param degree
+     * Turns the animal to a specified degree.
+     * 
+     * @param degree Degree to which the animal should be turned
      */
     @Override
     public void turn(double degree){  
     }
     
     /**
-     *
-     * @param x
-     * @param y
+     * Places the animal at a specified position.
+     * 
+     * @param x X-coordinate of the position
+     * @param y Y-coordinate of the position
      */
     @Override
     public void place(int x, int y) {
@@ -178,49 +224,54 @@ public class Animal implements IEntity{
     //GETTERS 
 
     /**
-     *
-     * @return
+     * Gets the hunger level of the animal.
+     * 
+     * @return The hunger level of the animal
      */
-    
     public int getHunger() {
         return hunger;
     }
 
     /**
-     *
-     * @return
+     * Gets the fatigue level of the animal.
+     * 
+     * @return The fatigue level of the animal
      */
     public int getFatigue() {
         return fatigue;
     }
 
     /**
-     *
-     * @return
+     * Gets the species of the animal.
+     * 
+     * @return The species of the animal
      */
     public String getSpecies() {
         return species;
     }
 
     /**
-     *
-     * @return
+     * Gets the sex of the animal.
+     * 
+     * @return The sex of the animal
      */
     public char getSex() {
         return sex;
     }
 
     /**
-     *
-     * @return
+     * Gets the speed of the animal.
+     * 
+     * @return The speed of the animal
      */
     public int getSpeed() {
         return speed;
     }
 
     /**
-     *
-     * @return
+     * Gets the age of the animal.
+     * 
+     * @return The age of the animal
      */
     public int getAge() {
         return age;
