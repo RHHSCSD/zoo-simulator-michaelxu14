@@ -4,55 +4,94 @@
  */
 package zoosim;
 
-
-import java.util.Random;
-
-
 /**
  *
  * @author Xu Last Name
  */
-public class Animal implements IEntity {
+public class Animal implements IEntity{
     // Variables
-    private int id;             // Unique identifier for each animal
-    private String name;        // Name of the animal
+    private static int idSaved = 0; 
+    private int id;    // Unique identifier for each animal
+    public String name;        // Name of the animal
     private String species;     // Species of the animal
     private char sex;           // Sex of the animal (M/F)
     private int age;            // Age of the animal
-    private int positionX;      // X-coordinate of the animal's position
-    private int positionY;      // Y-coordinate of the animal's position
-    private String size;        // Size category of the animal
-    private String speed;       // Speed category of the animal
-    private double direction;   // Direction in degrees
-    private int hunger;         // Hunger level of the animal
-    private int fatigue;        // Fatigue level of the animal
-    private Image image;        // Image representing the animal
+    public int positionX = 0;      // X-coordinate of the animal's position
+    public int positionY = 0;      // Y-coordinate of the animal's position
+    private int xWidth;
+    private int yWidth;
+    private String size;  
+    public int degree;
+    
+    
+    //Will be randomly chosen
+    private int speed; 
+    private int maxSpeed = 40;
+    private int minSpeed = 0;
+    
+    protected int height = 0;
+    // Slow, fast, medium 
+    private int hunger = 0;         // Hunger level of the animal
+    private int fatigue = 0;        // Fatigue level of the animal
+    public Image image;        // Image representing the animal
     private String sound;       // Sound produced by the animal
     
-    /**
-     * Outputs the sound produced by the animal.
-     */
+    
+    
+    //Constructor
+    public Animal(String name, String species, char sex, int speed, int age, Image image, String sound){
+        animSetter(name, species, sex, image, sound);
+        this.age = age;
+        if (speed < maxSpeed && speed > minSpeed){
+            this.speed = speed;
+        }
+        
+    }
+    
+    public Animal(String name, String species, char sex, Image image, String sound, int positionX, int positionY){
+        animSetter(name, species, sex, image, sound);
+        this.age = age;
+        this.speed = 0;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        
+                
+    }
+    
+    public void animSetter(String name, String species, char sex, Image image, String sound){
+        idSaved ++;
+        id = idSaved;
+        
+        this.name = name;
+        this.species = species;
+        this.sex = sex;
+        this.sound = sound;
+        
+        xWidth = image.getWidth();
+        yWidth = image.getHeight();
+    }
+    
+    
     @Override
     public void makeSound() {
         System.out.println(sound);
     }
     
     /**
-     * Moves the animal based on its speed category.
+     * Moves the animal based on its speed.
      */
     @Override
     public void move() {
-        int distance;
-        if (speed.equals("Slow")) {
-            distance = 1;
-        } else if (speed.equals("Fast")) {
-            distance = 4;
-        } else {
-            distance = 0;
-        }
-        
-        positionX += distance;
-        positionY += distance;
+        positionX += speed;
+        positionY += speed;
+    }
+    
+    @Override
+    public void turn(double degree){  
+    }
+    
+    @Override
+    public void place(int x, int y) {
     }
     
     /**
@@ -73,23 +112,8 @@ public class Animal implements IEntity {
         System.out.println("Fatigue is 0");
     }
     
-    /**
-     * Turns the animal by the specified number of degrees.
-     * 
-     * @param degree Number of degrees to turn
-     */
-    @Override
-    public void turn(double degree) {
-        direction += degree; 
-        direction %= 360;
-    }
+    //GETTERS 
     
-    @Override
-    public void place(int x, int y) {
-        positionX = x;
-        positionY = y;
-    }
-
     public int getHunger() {
         return hunger;
     }
@@ -106,7 +130,7 @@ public class Animal implements IEntity {
         return sex;
     }
 
-    public String getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 

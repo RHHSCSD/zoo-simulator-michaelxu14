@@ -12,10 +12,7 @@ public class Image {
     public int width;
     public int height;
     
-    public Image (int w, int h){
-        width = w;
-        height = h;
-    }
+    
     
     public int getWidth(){
         return width;
@@ -24,4 +21,10 @@ public class Image {
     public int getHeight(){
         return height;
     }
+    
+    public Image (int w, int h){
+        width = w;
+        height = h;
+    }
 }
+
